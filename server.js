@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 
 app.post("/input", (req, res) => {
   console.log("受信:", req.body);
