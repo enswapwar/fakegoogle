@@ -1,4 +1,6 @@
 const textarea = document.getElementById("APjFqb");
+console.log("text.js loaded");
+console.log(document.getElementById("APjFqb"));
 
 if (textarea) {
   textarea.addEventListener("input", () => {
